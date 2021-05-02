@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>きしっだー</title>
+</head>
+<body>
+  <h3>つぶやき</h3>
+  <form th:action="@{/add}" th:object="${tweet}" method="post">
+    <label for="content">コメント:</label>
+    <input type="text" th:field="*{content}">
+    <button>登録</button>
+    <br>
+    <small style="color: red" th:errors="*{content}"></small>
+  </form>
+
+  <br>
+  <h3>一覧</h3>
+  <div th:each="tweet : ${tweets}" th:inline="text">
+    <div>[[${tweet.id}]] - [[${tweet.content}]]</div>
+  </div>
+</body>
+</html>
